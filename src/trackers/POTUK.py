@@ -472,6 +472,7 @@ class POTUK():
         console.print(f"[yellow]Searching for " + what)
         params = urlencode(params)
         jacket_url = j_url + "/api/v2.0/indexers/" + tracker_code + "/results/torznab/api?%s" % params
+        print(jacket_url)
 
         try:
             response = self.get_response(jacket_url)
