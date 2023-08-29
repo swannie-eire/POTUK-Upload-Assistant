@@ -258,6 +258,10 @@ class POTUK():
         await common.edit_torrent(meta, self.tracker, self.source_flag)
 
         print(driver.current_url)
+        ids = driver.find_elements_by_xpath('//*[@id]')
+        for ii in ids:
+            # print ii.tag_name
+            print(ii.get_attribute('id'))  # id name as string
 
         #uploading if debug not enabled
         if meta['debug'] == False:
