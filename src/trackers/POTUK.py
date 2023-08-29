@@ -258,6 +258,8 @@ class POTUK():
         await common.edit_torrent(meta, self.tracker, self.source_flag)
 
         print(driver.current_url)
+        if driver.page_source.__contains__("swannie"):
+            print("logged in")
         ids = driver.find_elements_by_xpath('//*[@id]')
         for ii in ids:
             # print ii.tag_name
