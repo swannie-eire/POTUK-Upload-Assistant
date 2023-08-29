@@ -255,6 +255,8 @@ class POTUK():
         common = COMMON(config=self.config)
         await common.edit_torrent(meta, self.tracker, self.source_flag)
 
+        console.print(f"[green]{driver.current_url}")
+
         #uploading if debug not enabled
         if meta['debug'] == False:
             # setting name and removing .'s
