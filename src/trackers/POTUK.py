@@ -359,6 +359,8 @@ class POTUK():
                 description += subheading + "MEDIA INFO" + heading_end + "\n"
                 # Beautify MediaInfo for HDT using custom template
                 video = movie['filelist'][0]
+                #using custom mediainfo template.
+                # can not use full media info as sometimes its more than max chars per post.
                 mi_template = os.path.abspath(f"{movie['base_dir']}/data/templates/MEDIAINFO-POTUK.txt")
                 if os.path.exists(mi_template):
                     media_info = MediaInfo.parse(video, output="STRING", full=False,
