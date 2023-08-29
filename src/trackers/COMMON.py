@@ -339,18 +339,3 @@ class COMMON():
             if allow and each not in new_dupes:
                 new_dupes.append(each)
         return new_dupes
-
-    def get_response(self, query):
-        response = None
-        try:
-            # we can't use helpers.retrieve_url because of redirects
-            # we need the cookie processor to handle redirects
-            opener = urllib_request.build_opener(urllib_request.HTTPCookieProcessor(CookieJar()))
-            response = opener.open(query).read().decode('utf-8')
-        except urllib_request.HTTPError as e:
-            # if the page returns a magnet redirect, used in download_torrent
-            if e.code == 302:
-                response = e.url
-        except Exception:
-            pass
-        return response
