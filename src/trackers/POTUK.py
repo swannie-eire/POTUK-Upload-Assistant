@@ -18,6 +18,7 @@ import os
 from torf import Torrent
 from urllib.parse import urlencode, unquote
 import xml.etree.ElementTree
+from http.cookiejar import CookieJar
 
 
 class POTUK():
