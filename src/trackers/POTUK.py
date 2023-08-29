@@ -7,6 +7,8 @@ import traceback
 from src.console import console
 import re
 from selenium.webdriver.common.keys import Keys
+from difflib import SequenceMatcher
+import asyncio
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,6 +17,7 @@ from src.trackers.COMMON import COMMON
 import os
 from torf import Torrent
 from urllib.parse import urlencode, unquote
+import xml.etree.ElementTree
 
 
 class POTUK():
@@ -469,3 +472,31 @@ class POTUK():
         console.print(f"[yellow]Searching for " + what)
         params = urlencode(params)
         jacket_url = j_url + "/api/v2.0/indexers/" + tracker_code + "/results/torznab/api?%s" % params
+
+        try:
+            response = self.get_response(jacket_url)
+            if response is not None:
+                # process search results
+                response_xml = xml.etree.ElementTree.fromstring(response)
+                for each in response_xml.find('channel').findall('item'):
+                    res = {}
+
+                    result = each.find('title').text
+                    #print(result)
+                    # print(result)
+                    difference = SequenceMatcher(None, meta['clean_name'].replace('DD+', 'DDP'), result).ratio()
+                    if difference >= 0.05:
+                        dupes.append(result)
+            else:
+                if 'status_message' in response:
+                    console.print(f"[yellow]{response.get('status_message')}")
+                    await asyncio.sleep(5)
+                else:
+                    console.print(f"[red]Site Seems to be down or not responding to API")
+        except:
+            console.print(f"[red]Unable to search for existing torrents on site. Most likely the site is down or Jackett is down.")
+            dupes.append("FAILED SEARCH")
+            print(traceback.print_exc())
+            await asyncio.sleep(5)
+
+        return dupes
