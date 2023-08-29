@@ -32,7 +32,6 @@ class POTUK():
         self.headless = config['SELENIUM'].get('headless')
         self.tracker = 'POTUK'
         self.message = "################################################\n"
-        self.cookie_path = config['SELENIUM'].get('cookie_path')
         self.gecko_driver = config['SELENIUM'].get('gecko_driver')
         # self.upload_url = 'https://beyond-hd.me/api/upload/'
         # self.forum_link = 'https://beyond-hd.me/rules'
@@ -216,7 +215,7 @@ class POTUK():
         driver.get(url)
         # loading cookies
         try:
-            cookies = pickle.load(open(self.cookie_path + "pot_cookie.pkl", "rb"))
+            cookies = pickle.load(open(meta['base_dir'] + "/data/cookies/" + "pot_cookie.pkl", "rb"))
             for cookie in cookies:
                 # adding the cookies to the session through webdriver instance
                 if cookie['name'] == "xf_user":
@@ -258,6 +257,7 @@ class POTUK():
 
         if meta['debug'] == False:
             # setting name and removing .'s
+            print(driver.current_url())
             title = driver.find_element("name", "title")
             title.clear()
             sleep(0.25)
@@ -312,7 +312,7 @@ class POTUK():
             console.print(f"[cyan]description Data:")
             print(description)
         try:
-            pickle.dump(driver.get_cookies(), open(self.cookie_path + "pot_cookie.pkl", "wb"))
+            pickle.dump(driver.get_cookies(), open(meta['base_dir'] + "/data/cookies/" + "pot_cookie.pkl", "wb"))
         except:
             console.print(f"[red]error saving cookie")
         driver.close()

@@ -429,9 +429,9 @@ async def do_the_thing(base_dir):
                 if upload_to_potuk:
                     print("Uploading to POTUK")
                     potuk = POTUK(config=config)
-                    dupes = await potuk.search_existing(meta, "potuk")
-                    #console.print("[bold red]Can not check for dupes. Please check Manually")
-                    #dupes = False
+                    # dupes = await potuk.search_existing(meta, "potuk")
+                    console.print("[bold red]Can not check for dupes. Please check Manually")
+                    dupes = False
                     meta = dupe_check(dupes, meta)
                     if meta['upload'] == True:
                         try:

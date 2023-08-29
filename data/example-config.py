@@ -32,6 +32,23 @@ config = {
 
     },
 
+    "SELENIUM": {
+        "gecko_driver": '/path/to/geckodriver',
+        "data_path": '/mnt/storage-drive/downloads/',
+        "request_data_path": '/mnt/storage-drive/requests/',
+        "cookie_path": '/Upload-Assistant/data/cookies/',
+        # "description_path": 'tmp/',
+        "headless": True,
+        # "torrent_save_location": '/tmp/',
+        "message": '################################################\n',
+        "firefoxprofile": '/au/config/profiles/we0v1uzp.default2',
+    },
+
+    "JACKET": {
+        "api_key": "API_KEY",
+        "url": "http://192.0.0.1:9117",
+    },
+
     "TRACKERS" : {
         # Which trackers do you want to upload to?
         "default_trackers" : "BLU, BHD, AITHER, STC, STT, SN, THR, R4E, HP, ACM, PTP, LCD, LST, PTER, NBL, ANT, MTV",
@@ -135,6 +152,12 @@ config = {
             "api_key" : "LST api key",
             "announce_url" : "https://lst.gg/announce/customannounceurl",
             # "anon" : False
+        },
+        "POTUK": {
+            "username": "XXXX",
+            "password": "XXXXXX",
+            "announce_url": "https://potuk.net:2810/announce",
+            # "anon" : "False"
         },
 	"LT" : {
             "api_key" : "LT api key",
