@@ -434,10 +434,11 @@ class POTUK():
         what = ""
         #adding title to search
         what = unquote(meta['title'].replace(':', '').replace("'", '').replace(",", ''))
-        if meta['tv_pack']:
-            what += " " + meta['season']
-        else:
-            what += " " + meta['season'] + meta['episode']
+        if meta['category'] == 'TV':
+            if meta['tv_pack']:
+                what += " " + meta['season']
+            else:
+                what += " " + meta['season'] + meta['episode']
 
         params = [
             ('apikey', api_key),
