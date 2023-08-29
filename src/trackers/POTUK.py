@@ -60,7 +60,7 @@ class POTUK():
         driver.find_element(By.CLASS_NAME, "button--primary.button.button--icon.button--icon--login").click()
         # below works but gives me an error using click instead
         #driver.find_element_by_class_name("button--primary.button.button--icon.button--icon--login").submit().send_keys(Keys.ENTER)
-        #sleep(5)
+        sleep(5)
 
     def get_movie_type(self, definition, source, is_disc, type, sd):
         # print("movie type = ", definition, source, is_disc, type, sd)
@@ -233,6 +233,8 @@ class POTUK():
             console.print(f'[red]logging in using credentials')
             self.login(driver)
 
+        print(driver.current_url)
+
         if meta['genres'].__contains__('sport') or (
                 str(meta['title']).lower().__contains__('ufc') or str(meta['title']).lower().__contains__('vs')):
             meta['media_type'] = "sport"
@@ -255,7 +257,7 @@ class POTUK():
         common = COMMON(config=self.config)
         await common.edit_torrent(meta, self.tracker, self.source_flag)
 
-        print(driver.page_source)
+        print(driver.current_url)
 
         #uploading if debug not enabled
         if meta['debug'] == False:
