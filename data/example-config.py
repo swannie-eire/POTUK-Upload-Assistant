@@ -6,8 +6,8 @@ config = {
         # If you change any of these options, remove the #
         # -----------------------
 
-        "tmdb_api" : "tmdb_api key",
-        "imgbb_api" : "imgbb api key",
+        "tmdb_api" : "tmdb_api_key",
+        "imgbb_api" : "imgbb_api_key",
         "ptpimg_api" : "ptpimg api key",
         "lensdump_api" : "lensdump api key",
 
@@ -15,7 +15,7 @@ config = {
         "img_host_1": "imgbb",
         "img_host_2": "ptpimg",
         "img_host_3": "imgbox",
-	    "img_host_4": "pixhost",
+	"img_host_4": "pixhost",
         "img_host_5": "lensdump",
 
 
@@ -32,26 +32,27 @@ config = {
 
     },
 
+    "IMAGES": {
+        "imdb_75": 'https://i.imgur.com/Mux5ObG.png',
+        "tmdb_75": 'https://i.imgur.com/r3QzUbk.png',
+        "tvdb_75": 'https://i.imgur.com/UWtUme4.png',
+        "tvmaze_75": 'https://i.imgur.com/ZHEF5nE.png',
+        "mal_75": 'https://i.imgur.com/PBfdP3M.png'
+    },
+
     "SELENIUM": {
-        "gecko_driver": '/path/to/geckodriver',
-        "data_path": '/mnt/storage-drive/downloads/',
-        "request_data_path": '/mnt/storage-drive/requests/',
-        "cookie_path": '/Upload-Assistant/data/cookies/',
-        # "description_path": 'tmp/',
+        "gecko_driver": '/path/to/geckodriver_executable',
         "headless": True,
-        # "torrent_save_location": '/tmp/',
-        "message": '################################################\n',
-        "firefoxprofile": '/au/config/profiles/we0v1uzp.default2',
     },
 
     "JACKET": {
-        "api_key": "API_KEY",
-        "url": "http://192.0.0.1:9117",
+        "api_key": "jackett_api_key",
+        "url": "http://10.0.0.1:9117",
     },
 
     "TRACKERS" : {
         # Which trackers do you want to upload to?
-        "default_trackers" : "BLU, BHD, AITHER, STC, STT, SN, THR, R4E, HP, ACM, PTP, LCD, LST, PTER, NBL, ANT, MTV",
+        "default_trackers" : "POTUK",
 
         "BLU" : {
             "useAPI" : False, # Set to True if using BLU
@@ -89,7 +90,7 @@ config = {
             "announce_url" : "https://hawke.uno/announce/customannounceurl",
             # "anon" : False
         },
-	"MTV": {
+	    "MTV": {
             'api_key' : 'get from security page',
             'username' : '<USERNAME>',
             'password' : '<PASSWORD>',
@@ -107,7 +108,7 @@ config = {
             # "anon" : False
         },
         "SN": {
-            "api_key": "6Z1tMrXzcYpIeSdGZueQWqb3BowlS6YuIoZLHe3dvIqkSfY0Ws5SHx78oGSTazG0jQ1agduSqe07FPPE8sdWTg",
+            "api_key": "SN",
             "announce_url": "https://tracker.swarmazon.club:8443/<YOUR_PASSKEY>/announce",
         },
         "HP" :{
@@ -154,12 +155,12 @@ config = {
             # "anon" : False
         },
         "POTUK": {
-            "username": "XXXX",
-            "password": "XXXXXX",
+            "username": "XXXXXX",
+            "password": "XXXXX",
             "announce_url": "https://potuk.net:2810/announce",
             # "anon" : "False"
         },
-	"LT" : {
+	    "LT" : {
             "api_key" : "LT api key",
             "announce_url" : "https://lat-team.com/announce/customannounceurl",
             # "anon" : False
@@ -208,14 +209,14 @@ config = {
         # Name your torrent clients here, for example, this example is named "Client1"
         "Client1" : {
             "torrent_client" : "qbit",
-            "qbit_url" : "http://127.0.0.1",
+            "qbit_url" : "http://192.168.1.101",
             "qbit_port" : "8080",
             "qbit_user" : "username",
             "qbit_pass" : "password",
-
+            # "torrent_storage_dir" : "path/to/BT_backup folder",
             # Remote path mapping (docker/etc.) CASE SENSITIVE
             # "local_path" : "/LocalPath",
-            # "remote_path" : "/RemotePath"
+            # "remote_path" : "/RemotePath",
         },
         "qbit_sample" : {
             "torrent_client" : "qbit",
