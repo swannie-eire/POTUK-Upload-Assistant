@@ -28,6 +28,7 @@ class Clients():
     
 
     async def add_to_client(self, meta, tracker):
+        print("adding to client", tracker)
         torrent_path = f"{meta['base_dir']}/tmp/{meta['uuid']}/[{tracker}]{meta['clean_name']}.torrent"
         if os.path.exists(torrent_path):
             torrent = Torrent.read(torrent_path)
