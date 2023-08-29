@@ -49,7 +49,7 @@ class POTUK():
                          "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
                          "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",]
 
-        #Used for testing
+        #Used for testing should be uncommented
         self.movie_links = ["https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
                             "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
                             "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
