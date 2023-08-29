@@ -440,6 +440,7 @@ async def do_the_thing(base_dir):
                             # delaying adding to client for 60 seconds as this tracker is slow to ID torrents.
                             # uses a function that does not wait for it to add.
                             await asyncio.sleep(60)
+                            print("waited 60 seconds")
                             await client.add_to_client(meta, tracker_class.tracker)
                         except:
                             print(traceback.print_exc())
