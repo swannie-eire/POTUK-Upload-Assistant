@@ -1,4 +1,5 @@
 import requests
+from src.trackers.POTUK import POTUK
 from src.args import Args
 from src.clients import Clients
 from src.prep import Prep
@@ -42,6 +43,7 @@ import logging
 import shutil
 import glob
 import cli_ui
+from threading import Timer
 
 from src.console import console
 from rich.markdown import Markdown
@@ -247,7 +249,7 @@ async def do_the_thing(base_dir):
         tracker_class_map = {
             'BLU' : BLU, 'BHD': BHD, 'AITHER' : AITHER, 'STC' : STC, 'R4E' : R4E, 'THR' : THR, 'STT' : STT, 'HP' : HP, 'PTP' : PTP, 'RF' : RF, 'SN' : SN, 
             'ACM' : ACM, 'HDB' : HDB, 'LCD': LCD, 'TTG' : TTG, 'LST' : LST, 'HUNO': HUNO, 'FL' : FL, 'LT' : LT, 'NBL' : NBL, 'ANT' : ANT, 'PTER': PTER, 'JPTV' : JPTV,
-            'TL' : TL, 'TDC' : TDC, 'HDT' : HDT, 'MTV': MTV, 'OE': OE
+            'TL' : TL, 'TDC' : TDC, 'HDT' : HDT, 'MTV': MTV, 'OE': OE, 'POTUK': POTUK
             }
 
         for tracker in trackers:
@@ -417,6 +419,30 @@ async def do_the_thing(base_dir):
                         continue
                     await tracker_class.upload(meta)
                     await client.add_to_client(meta, tracker_class.tracker)
+
+            if tracker == "POTUK":
+                tracker_class = tracker_class_map[tracker](config=config)
+                if meta['unattended']:
+                    upload_to_potuk = True
+                else:
+                    upload_to_potuk = cli_ui.ask_yes_no(f"Upload to POTUK? {debug}", default=meta['unattended'])
+                if upload_to_potuk:
+                    print("Uploading to POTUK")
+                    potuk = POTUK(config=config)
+                    #dupes = await potuk.search_existing(meta, "potuk")
+                    console.print("[bold red]Can not check for dupes. Please check Manually")
+                    dupes = False
+                    meta = dupe_check(dupes, meta)
+                    if meta['upload'] == True:
+                        try:
+                            await potuk.upload(meta)
+                            # tracker is very slow and can take longer than a minute to recognise the torrent in most cases.
+                            # delaying adding to client for 60 seconds as this tracker is slow to ID torrents.
+                            # uses a function that does not wait for it to add.
+                            await asyncio.sleep(60)
+                            await client.add_to_client(meta, tracker_class.tracker)
+                        except:
+                            print(traceback.print_exc())
             
 
 
