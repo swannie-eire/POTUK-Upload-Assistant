@@ -1,5 +1,5 @@
 from selenium.webdriver.support.ui import WebDriverWait
-
+from urllib import request as urllib_request
 import pickle
 from selenium import webdriver
 from time import sleep
