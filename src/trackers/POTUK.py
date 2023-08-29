@@ -33,8 +33,6 @@ class POTUK():
         self.tracker = 'POTUK'
         self.message = "################################################\n"
         self.gecko_driver = config['SELENIUM'].get('gecko_driver')
-        # self.upload_url = 'https://beyond-hd.me/api/upload/'
-        # self.forum_link = 'https://beyond-hd.me/rules'
         self.tv_types = ["sci-fi / supernatural / horror", "comedy", "crime / action / adventure", "drama", "documentary", "cartoons/animation", "sport tv", "misc tv", "generic"]
         self.tv_links = ["https://www.potuk.net/index.php?forums/sci-fi-supernatural-horror.68/post-thread", "https://www.potuk.net/index.php?forums/comedy.69/post-thread", "https://www.potuk.net/index.php?forums/action-adventure.72/post-thread", "https://www.potuk.net/index.php?forums/drama.71/post-thread", "https://www.potuk.net/index.php?forums/documentaries.75/post-thread", "https://www.potuk.net/index.php?forums/cartoons-animation.70/post-thread", "https://www.potuk.net/index.php?forums/sport-tv.66/post-thread", "https://www.potuk.net/index.php?forums/misc-tv.73/post-thread", "https://www.potuk.net/index.php?forums/tv-shows.64/post-thread"]
 
