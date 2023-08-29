@@ -19,6 +19,7 @@ from torf import Torrent
 from urllib.parse import urlencode, unquote
 import xml.etree.ElementTree
 from http.cookiejar import CookieJar
+from pymediainfo import MediaInfo
 
 
 class POTUK():
@@ -354,31 +355,27 @@ class POTUK():
                 if movie['poster'] is not None:
                     description += '[IMG width="640px"]' + movie['poster'] + "[/IMG] \n\n"
             description += heading + str(movie['name']) + heading_end + "\n\n" + "\n\n"
-            if 'info' in movie:
+            if movie['is_disc'] != 'BDMV':
                 description += subheading + "MEDIA INFO" + heading_end + "\n"
-                description += code_start + "\n" + movie['info'] + code_end + "\n\n\n"
-                # uploading full media info
-                if tracker == "AR":
-                    full_mediainfo = open(f"{movie['base_dir']}/tmp/{movie['uuid']}/MEDIAINFO_CLEANPATH.txt", 'r').read()
-                    description += f"[hide=FULL MEDIAINFO][code]{full_mediainfo}[/code][/hide]\n"
-                # elif tracker == "POTUK":
-                #     description += f"[spoiler][code]{full_mediainfo}[/code][/spoiler]\n"
+                # Beautify MediaInfo for HDT using custom template
+                video = movie['filelist'][0]
+                mi_template = os.path.abspath(f"{movie['base_dir']}/data/templates/MEDIAINFO.txt")
+                if os.path.exists(mi_template):
+                    media_info = MediaInfo.parse(video, output="STRING", full=False,
+                                                 mediainfo_options={"inform": f"file://{mi_template}"})
+                    description += (f"""\n{media_info}\n[/code]\n""")
+                else:
+                    console.print("[bold red]Couldn't find the MediaInfo template")
+                    console.print("[green]Using normal MediaInfo for the description.")
+
+                    with open(f"{movie['base_dir']}/tmp/{movie['uuid']}/MEDIAINFO_CLEANPATH.txt", 'r',
+                              encoding='utf-8') as MI:
+                        description += (f"""[code]\n{MI.read()}\n[/code]\n\n""")
             else:
                 description += subheading + "DISC INFO" + heading_end + "\n"
-                if movie.get('discs', []) != []:
-                    discs = movie['discs']
-                    if discs[0]['type'] == "DVD":
-                        description += f"[spoiler][code]{discs[0]['vob_mi']}[/code][/spoiler]\n"
-                        description += "\n"
-                    if len(discs) >= 2:
-                        for each in discs[1:]:
-                            if each['type'] == "BDMV":
-                                description += f"[spoiler={each.get('name', 'BDINFO')}][code]{each['summary']}[/code][/spoiler]\n"
-                                description += "\n"
-                            if each['type'] == "DVD":
-                                description += f"{each['name']}:\n"
-                                description += f"[spoiler={os.path.basename(each['vob'])}][code][{each['vob_mi']}[/code][/spoiler] [spoiler={os.path.basename(each['ifo'])}][code][{each['ifo_mi']}[/code][/spoiler]\n"
-                                description += "\n"
+                with open(f"{movie['base_dir']}/tmp/{movie['uuid']}/BD_SUMMARY_00.txt", 'r',
+                          encoding='utf-8') as BD_SUMMARY:
+                    description += (f"""[code]\n{BD_SUMMARY.read()}\n[/code]\n\n""")
 
             description += "\n\n" + subheading + "PLOT" + heading_end + "\n" + str(movie['overview'])
             if movie['genres']:
@@ -473,7 +470,6 @@ class POTUK():
         console.print(f"[yellow]Searching for " + what)
         params = urlencode(params)
         jacket_url = j_url + "/api/v2.0/indexers/" + tracker_code + "/results/torznab/api?%s" % params
-        print(jacket_url)
 
         try:
             response = self.get_response(jacket_url)
