@@ -450,9 +450,9 @@ class POTUK():
         dupes = []
         console.print(f"[yellow]Searching for existing torrents on site...")
         what = ""
-        if meta['category'] != 'TV':
-            what = unquote(meta['title'].replace(':', '').replace("'", '').replace(",", ''))
-        elif meta['tv_pack']:
+        #adding title to search
+        what = unquote(meta['title'].replace(':', '').replace("'", '').replace(",", ''))
+        if meta['tv_pack']:
             what += " " + meta['season']
         else:
             what += " " + meta['season'] + meta['episode']
