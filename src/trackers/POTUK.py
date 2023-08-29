@@ -21,7 +21,7 @@ class POTUK():
 
     def __init__(self, config):
         self.config = config
-        self.source_flag = 'POTUK5'
+        self.source_flag = 'POTUK'
         self.username = config['TRACKERS']['POTUK'].get('username')
         self.password = config['TRACKERS']['POTUK'].get('password')
         self.headless = config['SELENIUM'].get('headless')
