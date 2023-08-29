@@ -233,8 +233,6 @@ class POTUK():
             console.print(f'[red]logging in using credentials')
             self.login(driver)
 
-        print(driver.current_url)
-
         if meta['genres'].__contains__('sport') or (
                 str(meta['title']).lower().__contains__('ufc') or str(meta['title']).lower().__contains__('vs')):
             meta['media_type'] = "sport"
@@ -257,15 +255,6 @@ class POTUK():
         common = COMMON(config=self.config)
         await common.edit_torrent(meta, self.tracker, self.source_flag)
 
-        print(driver.current_url)
-        if driver.page_source.__contains__("swannie"):
-            print("logged in")
-        else:
-            print("not logged in")
-        ids = driver.find_elements_by_xpath('//*[@id]')
-        for ii in ids:
-            # print ii.tag_name
-            print(ii.get_attribute('id'))  # id name as string
 
         #uploading if debug not enabled
         if meta['debug'] == False:
