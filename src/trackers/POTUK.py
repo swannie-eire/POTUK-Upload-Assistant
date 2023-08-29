@@ -42,27 +42,6 @@ class POTUK():
         self.movie_types = ["Cams TS & TC/PPV/VOD/HDTV", "Screeners/R3/R5/R6/HDRip/Webrip/WEB-DL/Recodes", "DVDRip/BRRip/BDRip", "DVDR", "High Definition MKV/MP4", "4k Ultra High Definition", "generic"]
         self.movie_links = ["https://www.potuk.net/index.php?forums/cams-ts-tc-ppv-vod-hdtv-ratio-free.16/post-thread", "https://www.potuk.net/index.php?forums/screeners-r3-r5-r6-hdrip-webrip-web-dl-recodes.10/post-thread", "https://www.potuk.net/index.php?forums/dvdrip-brrip-bdrip.9/post-thread", "https://www.potuk.net/index.php?forums/dvdr.11/post-thread", "https://www.potuk.net/index.php?forums/high-definition-mkv-mp4.15/post-thread", "https://www.potuk.net/index.php?forums/4k-ultra-high-definition-ratio-free.17/post-thread", "https://www.potuk.net/index.php?forums/movies.8/post-thread"]
 
-        # used for test
-        self.tv_links = ["https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                         "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",]
-
-        #Used for testing should be uncommented
-        self.movie_links = ["https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                            "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                            "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                            "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                            "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                            "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread",
-                            "https://www.potuk.net/index.php?forums/practice-your-uploading-skills-in-here.132/post-thread"]
-
         pass
 
     def login(self, driver):
