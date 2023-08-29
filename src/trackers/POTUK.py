@@ -258,7 +258,7 @@ class POTUK():
         #uploading if debug not enabled
         if meta['debug'] == False:
             # setting name and removing .'s
-            print(driver.current_url())
+            print(str(driver.current_url()))
             title = driver.find_element("name", "title")
             title.clear()
             sleep(0.25)
