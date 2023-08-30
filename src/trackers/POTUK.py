@@ -381,7 +381,7 @@ class POTUK():
             if len(base) > 2:
                 description += "\n\n" + subheading + "Notes" + heading_end + "\n" + str(base)
 
-            description += "\n\n" + "[COLOR=BLUE][size=6]" + "Uploaded using [URL=https://github.com/swannie-eire/POTUK-Upload-Assistant]POTUK-Upload-Assistant[/URL]" + heading_end + "\n" + str(base)
+            description += "\n\n" + "[CENTER][COLOR=PURPLE][size=7]" + "Uploaded using [URL=https://github.com/swannie-eire/POTUK-Upload-Assistant]POTUK-Upload-Assistant[/URL]" + heading_end + "[CENTER]\n" + str(base)
 
             descfile.write(description)
             descfile.close()
