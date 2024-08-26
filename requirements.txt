@@ -20,4 +20,4 @@ rich
 Jinja2
 selenium==3.141.0
 urllib3==1.26.9
-os
+
