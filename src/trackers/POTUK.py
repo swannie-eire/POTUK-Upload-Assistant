@@ -184,9 +184,9 @@ class POTUK():
         options.headless = self.headless
 
         # setting download path based on OS
-       if os.name == 'nt':
+        if os.name == 'nt':
            download_location = f"{meta['base_dir']}\\tmp\\{meta['uuid']}\\"
-       else:
+        else:
            download_location = f"{meta['base_dir']}/tmp/{meta['uuid']}/"
         #
         profile = webdriver.FirefoxProfile()
