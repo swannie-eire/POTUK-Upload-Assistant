@@ -183,7 +183,11 @@ class POTUK():
         options = Options()
         options.headless = self.headless
 
-        download_location = f"{meta['base_dir']}/tmp/{meta['uuid']}/"
+        # setting download path based on OS
+       if os.name == 'nt':
+           download_location = f"{meta['base_dir']}\\tmp\\{meta['uuid']}\\"
+       else:
+           download_location = f"{meta['base_dir']}/tmp/{meta['uuid']}/"
         #
         profile = webdriver.FirefoxProfile()
         profile.set_preference("browser.download.folderList", 2)
