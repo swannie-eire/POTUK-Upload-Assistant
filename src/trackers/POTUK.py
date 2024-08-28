@@ -273,11 +273,15 @@ class POTUK():
             while 1:
                 try:
                     e = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-                    torrent_file = f"{meta['base_dir']}/tmp/{meta['uuid']}/[{self.tracker}]{meta['clean_name']}.torrent"
+                    # checking OS type as path to torrent will be different nt = windows.
+                    if os.name == 'nt':
+                        torrent_file = f"{meta['base_dir']}\\tmp\{meta['uuid']}\\[{self.tracker}]{meta['clean_name']}.torrent"
+                    else:
+                        torrent_file = f"{meta['base_dir']}/tmp/{meta['uuid']}/[{self.tracker}]{meta['clean_name']}.torrent"
                     e.send_keys(torrent_file)
                     break
                 except:
-                    print()
+                    print("exception when trying to upload file")
 
             # wait till torrent file is uploaded
             sleep(1)
